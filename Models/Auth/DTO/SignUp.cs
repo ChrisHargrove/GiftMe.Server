@@ -12,13 +12,11 @@ public class SignUp : AbstractSignUp {
     /// The users email associated with their new account request.
     /// </summary>
     [DataMember]
-    [Required]
     public required string Email { get; set; }
     
     /// <summary>
     /// The users password associated with their new account request.
     /// </summary>
     [DataMember]
-    [Required]
     public required string Password { get; set; }
 }

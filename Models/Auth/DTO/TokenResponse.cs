@@ -11,5 +11,5 @@ public class TokenResponse {
     /// The users new JWT authorisation token.
     /// </summary>
     [DataMember]
-    public string Token { get; set; } = null!;
+    public required string Token { get; set; }
 }

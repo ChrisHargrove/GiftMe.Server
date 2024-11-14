@@ -12,13 +12,11 @@ public class SignIn {
     /// The email associated with an account.
     /// </summary>
     [DataMember]
-    [Required]
     public required string Email { get; set; }
     
     /// <summary>
     /// The password associated with an account.
     /// </summary>
     [DataMember]
-    [Required]
     public required string Password { get; set; }
 }
