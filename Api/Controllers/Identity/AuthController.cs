@@ -3,7 +3,7 @@ using Api.Controllers.Abstract;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Models.Auth.DTO;
-using ServiceLayer.Services;
+using ServiceLayer.Services.Identity;
 
 namespace Api.Controllers.Identity;
 
@@ -35,8 +35,8 @@ public class AuthController(ILogger<AuthController> logger, AuthService authServ
         return await Validator
             .Validate(() => signUp.Email)
             .Validate(() => signUp.Password)
-            .Validate(() => signUp.Username, UserConstants.MinNameLength, UserConstants.MaxNameLength)
-            .ValidateNullable(() => signUp.DisplayName, UserConstants.MinNameLength, UserConstants.MaxNameLength)
+            .Validate(() => signUp.Username, AccountConstants.MinNameLength, AccountConstants.MaxNameLength)
+            .ValidateNullable(() => signUp.DisplayName, AccountConstants.MinNameLength, AccountConstants.MaxNameLength)
             .OnSuccess(async () => Ok(await AuthService.SignUpAsync(signUp)))
             .CheckAsync();
     }
@@ -68,7 +68,7 @@ public class AuthController(ILogger<AuthController> logger, AuthService authServ
     /// <returns></returns>
     [HttpPost("signout")]
     public async Task<ActionResult> SignOutAsync() {
-        await AuthService.SignOutAsync();
+        await AuthService.SignOutAsync(TokenData.UserId, TokenData.Identities.Email);
         return Ok();
     }
 }

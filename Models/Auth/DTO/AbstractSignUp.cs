@@ -13,12 +13,17 @@ public class AbstractSignUp {
     /// The unique username for a created account.
     /// </summary>
     [DataMember]
-    [Required]
-    public string Username { get; set; }
+    public required string Username { get; set; }
 
     /// <summary>
     /// The non-unique displayName for a created account.
     /// </summary>
     [DataMember]
     public string? DisplayName { get; set; }
+    
+    /// <summary>
+    /// The date of birth of the owner of the account.
+    /// </summary>
+    [DataMember]
+    public DateTime DateOfBirth { get; set; }
 }
